@@ -1,0 +1,60 @@
+.mine{
+    background-color: #dfc3ef;
+}
+.cal{
+    width: 299px;
+    height:500px;
+    background-color: #103f61;
+    border-radius: 25px;
+    margin: auto;
+    /* overflow: hidden; */
+    overflow: hidden;
+}
+.cal-top{
+    width: 100%;
+    height: 40%;
+    background-color: #001e34;
+    border-radius: 25px 25px 0px 0px;
+    margin: auto;
+}
+.cal-bottom{
+    width: 100%;
+    height: 60%;
+    background-color: #0b624d;
+    border-radius: 0px 0px 25px 25px;
+    margin: auto;
+}
+button{
+    width: 100%;
+    height: 60px;
+    background-color: #002b4a;
+    border: 1px solid #001020;
+    color: white;
+    font-size: 18px;
+    font-family: sans-serif;
+}
+.bt1{
+    padding: 0 !important;
+}
+.row1{
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+.lb{
+    color: white;
+    height: 100%;
+    text-align: right;
+    padding: 4px;
+    width: 100%;
+    padding-right: 15px;
+    font-size: 35px;
+    padding-top: 30%;
+    font-family: sans-serif;
+}
+.bnf{
+    color: #8986f5;
+}
+.sabz{
+    color: #21a44e;
+}

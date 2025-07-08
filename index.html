@@ -1,0 +1,202 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="viewport-fit=cover,width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link href="bootstrap.min.css" rel="stylesheet" >
+        <link rel="stylesheet" href="bootstrap.min.js">
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" /> -->
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+        <link rel="stylesheet" href="style.css">
+
+        <title>ماشین حساب</title>
+    </head>
+    <body class="mine">
+        <br>
+        <br>
+        <br>
+        <div class="cal">
+            <div class="cal-top">
+                <label class="lb" id="lb0">0</label>
+            </div>
+            <div class="cal-bottom">
+                <div class="roW row1">
+                    <div class="col bt1"><button class="sabz" id="c">C </button></div>
+                    <div class="col bt1"><button class="sabz" id="kam">&lt;</button></div>
+                    <div class="col bt1"><button class="bnf" id="sl">/</button></div>
+                    <div class="col bt1"><button class="bnf" id="zarb">X</button></div>
+                </div>
+                <div class="roW row1">
+                    <div class="col bt1"><button id="adad7">7 </button></div>
+                    <div class="col bt1"><button id="adad8">8</button></div>
+                    <div class="col bt1"><button id="adad9">9</button></div>
+                    <div class="col bt1"><button class="bnf" id="kam1">-</button></div>
+                </div>
+                <div class="roW row1">
+                    <div class="col bt1"><button id="adad4">4 </button></div>
+                    <div class="col bt1"><button id="adad5">5</button></div>
+                    <div class="col bt1"><button id="adad6">6</button></div>
+                    <div class="col bt1"><button class="bnf" id="plas">+</button></div>
+                </div>
+                <div class="roW row1">
+                    <div class="col-9 bt1">
+                        <div class="roW row1">
+                            <div class="col bt1"><button id="adad1">1 </button></div>
+                            <div class="col bt1"><button id="adad2">2</button></div>
+                            <div class="col bt1"><button id="adad3">3</button></div>
+                        </div>
+                        <div class="roW row1">
+                            <div class="col-8 bt1"><button style="border-radius: 0px 0px 0px 25px;" id="adad0">0 </button></div>
+                            <div class="col-4 bt1"><button id="dat">.</button></div>
+                        </div>
+                    </div>
+                    <div class="col-3 bt1">
+                        <div class="col bt1"><button style="height: 120px;border-radius: 0px 0px 25px 0px;" accesskey="enter" class="sabz" id="mv">=</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script>
+
+            $(document).ready(function (){
+
+                function see(){
+
+                $("#adad0,#adad1 ,#adad2 ,#adad3 ,#adad4,#adad5 ,#adad6 ,#adad7 , #adad8 ,#adad9,#zarb,#kam1,#dat,#mv,#plas,#sl").click(function (){
+
+
+                    let lb=$("#lb0").text();
+                    let click=$(this).text().trim();
+
+                    if (lb==="0"){
+                        $("#lb0").text(click);
+                    }else{
+                        $("#lb0").text(lb + click);
+                    }
+                    if (lb==0 && click=='.'){
+                    $("#lb0").text('0.');
+                    }
+                    if (lb==0 && click=='X'){
+                    $("#lb0").text('0 X');
+                    }
+                     if (lb==0 && click=='/'){
+                    $("#lb0").text('0 /');
+                    }
+                    if (lb==0 && click=='-'){
+                        $("#lb0").text('0 -');
+                    }
+                    if (lb==0 && click=='='){
+                        $("#lb0").text('0');
+                    }
+                    if (lb.includes('//') || lb.includes('--') || lb.includes('++') || lb.includes('XX') || lb.includes('==')){
+                        $("#lb0").html('<span class="text-danger" style="color: red;direction: rtl;"">!علامت را دو بار نزنید<span>');
+                        setTimeout(() => {
+                        $("#lb0").text(lb);
+                        },2000)
+                    }
+                    //     if (lb.includes('-')){
+                    //     $("#lb0").text('-');
+                    // }
+                });
+                $('#c').click(function (){
+                    $("#lb0").text('0');
+
+                });
+
+
+            }
+see();
+
+
+$('#mv').click(function (){
+      let lb=$("#lb0").text();
+    if (!lb.includes('+')&&!lb.includes('/')&&!lb.includes('X')&&!lb.includes('-')&&!lb=='0'){
+        // console.log('ok');
+        // let qabl =lb.split("=")[1].reduceAll("," , "");
+        let qabl = lb.replace("=", "");
+        lb=$("#lb0").text(qabl);
+    }
+    if (lb.includes("+")){
+        jam();
+    }
+        if (lb.includes("X")){
+        zarb();
+    }
+            if (lb.includes("-")){
+        menha();
+    }
+            if (lb.includes("/")){
+        taqsim();
+    }
+                    if (zarb){
+                        lb.text('0');
+                    }
+    function jam(){
+        let lb=$("#lb0").text();
+        let javab= 0;
+        for (let x=0; x < jam.length ; x++){
+            javab  += parseFloat(jam[x]);
+
+    }
+    $("#lb0").text(javab);
+    // console.log(javab);
+    }
+
+
+     function zarb(){
+        let lb=$("#lb0").text();
+        let zarb = lb.split("X");
+        let javab= 1;
+        for (let x=0; x < zarb.length ; x++){
+            javab  *= parseFloat(zarb[x]);
+
+    }
+    $("#lb0").text(javab);
+    // console.log(javab);
+    }
+
+
+         function menha(){
+        let lb=$("#lb0").text();
+        let menha = lb.split("-");
+        let javab= parseFloat(menha[0]);
+        for (let x=1; x < menha.length ; x++){
+            javab  -= parseFloat(menha[x]);
+
+    }
+    $("#lb0").text(javab);
+    // console.log(javab);
+    }
+
+             function taqsim(){
+        let lb=$("#lb0").text();
+        let taqsim = lb.split("/");
+        let javab= parseFloat(taqsim[0]);
+        for (let x=1; x < taqsim.length ; x++){
+            javab  /= parseFloat(taqsim[x]);
+
+    }
+    $("#lb0").text(javab);
+    // console.log(javab);
+    }
+
+});
+
+
+$('#kam').click(function(){
+
+});
+
+
+        // function javab(){
+        //         $("#zarb,#kam1,#kam,#dat,#mv,#plas").click(function (){
+        //             console.log("ok");
+        //         });
+
+            // }
+
+            })
+
+        </script>
+    </body>
+</html>
